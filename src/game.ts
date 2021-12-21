@@ -33,45 +33,11 @@ export class Game {
         this._light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), this._scene);
         // create the skybox
         let skybox = GameUtils.createSkybox("skybox", "./assets/texture/skybox/TropicalSunnyDay", this._scene);
-        // creates the sandy ground
-        let ground = GameUtils.createGround(this._scene);
-        // creates the watermaterial and adds the relevant nodes to the renderlist
-        let waterMaterial = GameUtils.createWater(this._scene);
-        waterMaterial.addToRenderList(skybox);
-        waterMaterial.addToRenderList(ground);
-        // create a shark mesh from a .obj file
-        GameUtils.createShark(this._scene)
-            .subscribe(sharkMesh => {
-                this._sharkMesh = sharkMesh;
-                this._sharkMesh.getChildren().forEach(
-                    mesh => {
-                        waterMaterial.addToRenderList(mesh);
-                    }
-                );
-            });
-        // finally the new ui
-        let guiTexture = GameUtils.createGUI();
         
-        // Button to start shark animation
-        GameUtils.createButtonSwim(guiTexture, "Start Swimming",
-            (btn) => {
-                let textControl = btn.children[0] as GUI.TextBlock;
-                this._swim = !this._swim;
-                if (this._swim) {
-                    textControl.text = "Stop Swimming";
-                }
-                else {
-                    this._sharkAnimationTime = 0;
-                    textControl.text = "Start Swimming";
-                }
-            });
+        // create goldberg polyhedron
+        let goldberg = BABYLON.MeshBuilder.CreateGoldberg("goldberg", {m: 12, n: 2});
+        goldberg.setFaceColors([0, 10, new BABYLON.Color4(1, 0, 0, 1)]);
 
-        // Debug Text for Shark coordinates
-        this._txtCoordinates = GameUtils.createCoordinatesText(guiTexture);
-
-        // Physics engine also works
-        let gravity = new BABYLON.Vector3(0, -0.9, 0);
-        this._scene.enablePhysics(gravity, new BABYLON.CannonJSPlugin());
     }
 
 

@@ -25,10 +25,10 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "babylonjs": "^4.2.0",
-    "babylonjs-gui": "^4.2.0",
-    "babylonjs-loaders": "^4.2.0",
-    "babylonjs-materials": "^4.2.0",
+    "babylonjs": "^5.0.0-alpha.65",
+    "babylonjs-gui": "^5.0.0-alpha.65",
+    "babylonjs-loaders": "^5.0.0-alpha.65",
+    "babylonjs-materials": "^5.0.0-alpha.65",
     "cannon": "^0.6.2",
     "earcut": "^2.2.2",
     "lodash": "^4.17.21",
